@@ -5,6 +5,12 @@ go-sqlite3
 [![Github Action](https://github.com/ValentinMontmirail/go-sqlcipher/actions/workflows/go.yaml/badge.svg)](https://github.com/ValentinMontmirail/go-sqlcipher/actions/workflows/go.yaml)
 [![Coverage Status](https://codecov.io/gh/ValentinMontmirail/go-sqlcipher/graph/badge.svg?token=6FK2UKVH2X)](https://codecov.io/gh/ValentinMontmirail/go-sqlcipher)
 [![Go Report Card](https://goreportcard.com/badge/github.com/ValentinMontmirail/go-sqlcipher)](https://goreportcard.com/report/github.com/ValentinMontmirail/go-sqlcipher)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=ValentinMontmirail_go-sqlcipher&metric=ncloc)](https://sonarcloud.io/summary/new_code?id=ValentinMontmirail_go-sqlcipher)
+
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=ValentinMontmirail_go-sqlcipher&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=ValentinMontmirail_go-sqlcipher)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=ValentinMontmirail_go-sqlcipher&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=ValentinMontmirail_go-sqlcipher)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=ValentinMontmirail_go-sqlcipher&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=ValentinMontmirail_go-sqlcipher)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=ValentinMontmirail_go-sqlcipher&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=ValentinMontmirail_go-sqlcipher)
 
 # Description
 
