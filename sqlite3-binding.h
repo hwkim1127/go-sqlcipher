@@ -11876,6 +11876,24 @@ struct fts5_api {
 #ifdef SQLITE_USER_AUTHENTICATION
 
 /*
+** The sqlite3_user_add() interface can be used (by an admin user only)
+** to create a new user.  When called on a no-authentication-required
+** database, this routine converts the database into an authentication-
+** required database, automatically makes the added user an
+** administrator, and logs in the current connection as that user.
+** The sqlite3_user_add() interface only works for the "main" database, not
+** for any ATTACH-ed databases.  Any call to sqlite3_user_add() by a
+** non-admin user results in an error.
+*/
+int sqlite3_user_add(
+  sqlite3 *db,           /* Database connection */
+  const char *zUsername, /* Username to be added */
+  const char *aPW,       /* Password or credentials */
+  int nPW,               /* Number of bytes in aPW[] */
+  int isAdmin            /* True to give new user admin privilege */
+);
+
+/*
 ** The sqlite3_user_change() interface can be used to change a users
 ** login credentials or admin privilege.  Any user can change their own
 ** login credentials.  Only an admin user can change another users login
