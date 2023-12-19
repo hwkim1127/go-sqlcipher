@@ -12,7 +12,7 @@ package sqlite3
 #cgo CFLAGS: -DSQLITE_USER_AUTHENTICATION
 #cgo LDFLAGS: -lm
 #ifndef USE_LIBSQLITE3
-#include "sqlite3-binding.h"
+#include <sqlite3-binding.h>
 #else
 #include <sqlite3.h>
 #endif
@@ -119,7 +119,7 @@ func (c *SQLiteConn) authenticate(username, password string) int {
 		C.free(unsafe.Pointer(cpass))
 	}()
 
-	return int(C._sqlite3_user_authenticate(c.db, cuser, cpass, C.int(len(password))))
+	return int(C.sqlite3_user_authenticate(c.db, cuser, cpass, C.int(len(password))))
 }
 
 // AuthUserAdd can be used (by an admin user only)
@@ -172,7 +172,7 @@ func (c *SQLiteConn) authUserAdd(username, password string, admin int) int {
 		C.free(unsafe.Pointer(cpass))
 	}()
 
-	return int(C._sqlite3_user_add(c.db, cuser, cpass, C.int(len(password)), C.int(admin)))
+	return int(C.sqlite3_user_add(c.db, cuser, cpass, C.int(len(password)), C.int(admin)))
 }
 
 // AuthUserChange can be used to change a users
@@ -225,7 +225,7 @@ func (c *SQLiteConn) authUserChange(username, password string, admin int) int {
 		C.free(unsafe.Pointer(cpass))
 	}()
 
-	return int(C._sqlite3_user_change(c.db, cuser, cpass, C.int(len(password)), C.int(admin)))
+	return int(C.sqlite3_user_change(c.db, cuser, cpass, C.int(len(password)), C.int(admin)))
 }
 
 // AuthUserDelete can be used (by an admin user only)
@@ -266,7 +266,7 @@ func (c *SQLiteConn) authUserDelete(username string) int {
 		C.free(unsafe.Pointer(cuser))
 	}()
 
-	return int(C._sqlite3_user_delete(c.db, cuser))
+	return int(C.sqlite3_user_delete(c.db, cuser))
 }
 
 // AuthEnabled checks if the database is protected by user authentication

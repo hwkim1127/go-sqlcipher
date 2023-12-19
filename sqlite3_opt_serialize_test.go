@@ -10,6 +10,8 @@ import (
 	"testing"
 )
 
+var driverName = "sqlite3"
+
 func TestSerializeDeserialize(t *testing.T) {
 	// Connect to the source database.
 	srcTempFilename := TempFilename(t)
