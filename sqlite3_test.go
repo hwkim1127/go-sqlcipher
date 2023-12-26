@@ -1240,6 +1240,16 @@ func TestEncryptoDatabase(t *testing.T) {
 		t.Error("Failed to db.QueryRow: not matched results")
 	}
 	db.Close()
+	db, err = sql.Open("sqlite3", tempFilename+"?_key=x'123000'")
+	if err != nil {
+		t.Fatal("Failed to open database:", err)
+	}
+
+	rows, err = db.Query("select id from foo")
+	if err == nil {
+		t.Error("Failed to encrypto database")
+	}
+	db.Close()
 	db, err = sql.Open("sqlite3", tempFilename+"?_key=x'123ABC'")
 	if err != nil {
 		t.Fatal("Failed to open database:", err)
