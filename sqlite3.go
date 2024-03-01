@@ -21,7 +21,6 @@ package sqlite3
 #cgo CFLAGS: -DSQLITE_HAS_CODEC
 #cgo LDFLAGS: -lcrypto
 #cgo CFLAGS: -DSQLITE_ENABLE_RTREE -DSQLITE_THREADSAFE=1 -DHAVE_USLEEP=1
-#cgo linux,!android CFLAGS: -DHAVE_PREAD64=1 -DHAVE_PWRITE64=1
 #cgo CFLAGS: -DSQLITE_ENABLE_FTS3 -DSQLITE_ENABLE_FTS3_PARENTHESIS -DSQLITE_ENABLE_FTS4_UNICODE61
 #cgo CFLAGS: -DSQLITE_TRACE_SIZE_LIMIT=15
 #cgo CFLAGS: -DSQLITE_OMIT_DEPRECATED
@@ -29,7 +28,6 @@ package sqlite3
 #cgo CFLAGS: -DSQLITE_DEFAULT_WAL_SYNCHRONOUS=1
 #cgo CFLAGS: -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT
 #cgo CFLAGS: -Wno-deprecated-declarations
-#cgo linux,!android CFLAGS: -DHAVE_PREAD64=1 -DHAVE_PWRITE64=1
 #ifndef USE_LIBSQLITE3
 #include <sqlite3-binding.h>
 #else
@@ -52,6 +50,18 @@ package sqlite3
 
 #ifndef SQLITE_DETERMINISTIC
 # define SQLITE_DETERMINISTIC 0
+#endif
+
+#if defined(HAVE_PREAD64) && defined(HAVE_PWRITE64)
+# undef USE_PREAD
+# undef USE_PWRITE
+# define USE_PREAD64 1
+# define USE_PWRITE64 1
+#elif defined(HAVE_PREAD) && defined(HAVE_PWRITE)
+# undef USE_PREAD
+# undef USE_PWRITE
+# define USE_PREAD64 1
+# define USE_PWRITE64 1
 #endif
 
 static int
