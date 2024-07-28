@@ -3,6 +3,7 @@
 // Use of this source code is governed by an MIT-style
 // license that can be found in the LICENSE file.
 
+//go:build !sqlite_omit_load_extension
 // +build !sqlite_omit_load_extension
 
 package sqlite3
@@ -68,7 +69,7 @@ func (c *SQLiteConn) loadExtension(lib string, entry *string) error {
 
 	var centry *C.char
 	if entry != nil {
-		centry := C.CString(*entry)
+		centry = C.CString(*entry)
 		defer C.free(unsafe.Pointer(centry))
 	}
 
