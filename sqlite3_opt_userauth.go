@@ -86,7 +86,7 @@ var (
 // combination is incorrect or unknown.
 //
 // If the SQLITE_USER table is not present in the database file, then
-// this interface is a harmless no-op returnning SQLITE_OK.
+// this interface is a harmless no-op returning SQLITE_OK.
 func (c *SQLiteConn) Authenticate(username, password string) error {
 	rv := c.authenticate(username, password)
 	switch rv {
@@ -119,7 +119,7 @@ func (c *SQLiteConn) authenticate(username, password string) int {
 		C.free(unsafe.Pointer(cpass))
 	}()
 
-	return int(C.sqlite3_user_authenticate(c.db, cuser, cpass, C.int(len(password))))
+	return int(C._sqlite3_user_authenticate(c.db, cuser, cpass, C.int(len(password))))
 }
 
 // AuthUserAdd can be used (by an admin user only)
@@ -172,7 +172,7 @@ func (c *SQLiteConn) authUserAdd(username, password string, admin int) int {
 		C.free(unsafe.Pointer(cpass))
 	}()
 
-	return int(C.sqlite3_user_add(c.db, cuser, cpass, C.int(len(password)), C.int(admin)))
+	return int(C._sqlite3_user_add(c.db, cuser, cpass, C.int(len(password)), C.int(admin)))
 }
 
 // AuthUserChange can be used to change a users
@@ -225,7 +225,7 @@ func (c *SQLiteConn) authUserChange(username, password string, admin int) int {
 		C.free(unsafe.Pointer(cpass))
 	}()
 
-	return int(C.sqlite3_user_change(c.db, cuser, cpass, C.int(len(password)), C.int(admin)))
+	return int(C._sqlite3_user_change(c.db, cuser, cpass, C.int(len(password)), C.int(admin)))
 }
 
 // AuthUserDelete can be used (by an admin user only)
@@ -266,7 +266,7 @@ func (c *SQLiteConn) authUserDelete(username string) int {
 		C.free(unsafe.Pointer(cuser))
 	}()
 
-	return int(C.sqlite3_user_delete(c.db, cuser))
+	return int(C._sqlite3_user_delete(c.db, cuser))
 }
 
 // AuthEnabled checks if the database is protected by user authentication
