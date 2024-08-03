@@ -1,4 +1,4 @@
-module github.com/ValentinMontmirail/go-sqlcipher
+module github.com/hwkim1127/go-sqlcipher
 
 go 1.18
 
